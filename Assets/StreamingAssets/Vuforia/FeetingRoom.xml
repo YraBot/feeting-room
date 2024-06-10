@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
+    <ImageTarget name="horse" size="1.000000 0.727124" />
+    <ImageTarget name="bmv" size="1.000000 0.738552" />
+    <ImageTarget name="car" size="1.000000 0.666842" />
+    <ImageTarget name="phone" size="10.000000 10.489796" />
     <ImageTarget name="img_20240610_105553_519" size="10.000000 5.625000" />
   </Tracking>
 </QCARConfig>

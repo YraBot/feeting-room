@@ -359,6 +359,7 @@
 -r:"Library/Bee/artifacts/1300b0aE.dag/VuforiaScripts.ref.dll"
 -analyzer:"D:/UnityEditor/2022.3.10f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"D:/UnityEditor/2022.3.10f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+"Assets/scripts/MatchBoneToPos.cs"
 "Assets/scripts/test.cs"
 -langversion:9.0
 
