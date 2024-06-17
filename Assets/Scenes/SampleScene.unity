@@ -1239,6 +1239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: t-shirt
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 112a0605c4e0aa74282a398651b2c612, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
