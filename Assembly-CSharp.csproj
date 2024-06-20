@@ -79,6 +79,7 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\!GET_MORE_ASSETS_FOR_FREE\DEV FREEDOM.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\StreamingAssets\Vuforia\FeetingRoom.xml" />
@@ -730,6 +731,10 @@
       <Project>{8DB28E6F-5E15-CCCA-4D27-A75E6F9697A2}</Project>
       <Name>VuforiaEditorScripts</Name>
     </ProjectReference>
+    <ProjectReference Include="EnoxSoftware.OpenCVForUnity.Editor.csproj">
+      <Project>{3E9727AE-65F6-80C7-03CE-DB63D12941AB}</Project>
+      <Name>EnoxSoftware.OpenCVForUnity.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.XR.MagicLeap.csproj">
       <Project>{44F4CA83-8860-6DB2-AA1C-163F66AEDABD}</Project>
       <Name>UnityEditor.XR.MagicLeap</Name>
@@ -893,6 +898,10 @@
     <ProjectReference Include="UnityEditor.XR.LegacyInputHelpers.csproj">
       <Project>{4BBBC681-A95C-2E8F-B908-72D81665D856}</Project>
       <Name>UnityEditor.XR.LegacyInputHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="EnoxSoftware.OpenCVForUnity.csproj">
+      <Project>{0D492F95-8C3F-B001-0108-B340AA2E9A29}</Project>
+      <Name>EnoxSoftware.OpenCVForUnity</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Flow.Editor.csproj">
       <Project>{648BD1A4-9F8F-196B-523C-9E039A11DC71}</Project>
