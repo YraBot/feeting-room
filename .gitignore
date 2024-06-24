@@ -1,3 +1,5 @@
 
 Library/ArtifactDB
 Assets/OpenCV for Unity v2.4.7.unitypackage
+Assets/StreamingAssets/dnn/pose_iter_160000.caffemodel
+Assets/StreamingAssets/dnn/pose_iter_440000.caffemodel

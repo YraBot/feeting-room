@@ -249,7 +249,7 @@ namespace OpenCVForUnityExample
 #endif
 
         // Use this for initialization
-        void Run()
+        public void Run()
         {
 
             //if true, The error log of the Native side OpenCV will be displayed on the Unity Editor Console.
