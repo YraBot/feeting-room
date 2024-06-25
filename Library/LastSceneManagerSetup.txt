@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Meny.unity
+- path: Assets/OpenCVForUnity/Examples/MainModules/dnn/OpenPoseExample/OpenPoseExample.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

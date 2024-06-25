@@ -2,7 +2,7 @@
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using OpenCVForUnity.CoreModule;
@@ -10,6 +10,7 @@ using OpenCVForUnity.ImgcodecsModule;
 using OpenCVForUnity.DnnModule;
 using OpenCVForUnity.ImgprocModule;
 using OpenCVForUnity.UnityUtils;
+using OpenCVForUnity.UnityUtils.Helper;
 
 namespace OpenCVForUnityExample
 {
@@ -38,7 +39,11 @@ namespace OpenCVForUnityExample
         Dictionary<string, int> BODY_PARTS;
         string[,] POSE_PAIRS;
 
-
+        /// <summary>
+        /// The webcam texture to mat helper.
+        /// </summary>
+        WebCamTextureToMatHelper webCamTextureToMatHelper;
+        bool isWorking = false;
         /// <summary>
         /// IMAGE_FILENAME
         /// </summary>
@@ -68,14 +73,15 @@ namespace OpenCVForUnityExample
         /// The prototxt filepath.
         /// </summary>
         string prototxt_filepath;
+        Mat mat;
 
 #if UNITY_WEBGL
         IEnumerator getFilePath_Coroutine;
 #endif
-
         // Use this for initialization
         void Start()
         {
+            webCamTextureToMatHelper = gameObject.GetComponent<WebCamTextureToMatHelper>();
             if (dataset == DATASET_TYPE.COCO)
             {
                 //COCO
@@ -125,7 +131,6 @@ namespace OpenCVForUnityExample
             }
             else if (dataset == DATASET_TYPE.MPI)
             {
-
                 //MPI
                 BODY_PARTS
                 = new Dictionary<string, int>() { { "Head", 0 }, { "Neck", 1 }, {
@@ -217,10 +222,44 @@ namespace OpenCVForUnityExample
             image_filepath = Utils.getFilePath(IMAGE_FILENAME);
             caffemodel_filepath = Utils.getFilePath(CAFFEMODEL_FILENAME);
             prototxt_filepath = Utils.getFilePath(PROTOTXT_FILENAME);
-            Run();
+            webCamTextureToMatHelper.Initialize();
+
+            Invoke("g1", 2f);
+            
 #endif
         }
+        void g1()
+        {
+            mat = webCamTextureToMatHelper.GetMat();
+            Texture2D tex = new Texture2D(mat.cols(), mat.rows());
+            Utils.matToTexture2D(mat, tex);
 
+            // Кодирование текстуры в формат JPG
+            byte[] bytes = ImageConversion.EncodeToJPG(tex);
+
+            // Сохранение в файл
+            File.WriteAllBytes(image_filepath, bytes);
+
+            Debug.Log("Изображение сохранено в " + image_filepath);
+            mat = Imgcodecs.imread(image_filepath);
+            Run(mat);
+        }
+
+        public void CamInitialized()
+        {
+            isWorking=true;
+            
+        }
+        public void CamDeposed()
+        {
+            Debug.Log("Deposed");
+            mat = null;
+            isWorking=false;
+        }
+        public void Error(string message)
+        {
+            Debug.Log("Error: " + message);
+        }
 #if UNITY_WEBGL
         private IEnumerator GetFilePath()
         {
@@ -247,15 +286,16 @@ namespace OpenCVForUnityExample
             Run();
         }
 #endif
-
+        void Run()
+        {
+            Run(mat);
+        }
         // Use this for initialization
-        public void Run()
+        public void Run(Mat img)
         {
 
             //if true, The error log of the Native side OpenCV will be displayed on the Unity Editor Console.
             Utils.setDebugMode(true);
-
-            Mat img = Imgcodecs.imread(image_filepath);
             if (img.empty())
             {
                 Debug.LogError(IMAGE_FILENAME + " is not loaded. Please read “StreamingAssets/dnn/setup_dnn_module.pdf” to make the necessary setup.");
@@ -397,13 +437,9 @@ namespace OpenCVForUnityExample
 
 
             Utils.setDebugMode(false);
+            Invoke("g1",0.1f);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
 
         /// <summary>
         /// Raises the disable event.
